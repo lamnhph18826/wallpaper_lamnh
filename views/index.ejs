@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Wallpaper</h1>
+    <form method="post" action="/upfile" enctype="multipart/form-data">
+      <input name="id" placeholder="id">
+      <input name="title" placeholder="title">
+      <input name="day" placeholder="day">
+      <input name="messeger" placeholder="messeger">
+      <input type="file" name="linkImg">
+      <button title="submit"> send</button>
+    </form>
+<!--  <form method="post" action="/send" enctype="application/x-www-form-urlencoded">-->
+
+<!--    <button type="submit"> send</button>-->
+<!--  </form>-->
+
+  <% for (var i=0;i<data.length;i++){
+    var abc = data[i].link.toString();
+    var index = data[i]._ID;
+    %>
+    <div style="width: 1024px;height: 920px;background-color: #b1b1b1;padding: 6px;margin-top: 22px">
+
+      <img style="width: 1024px;height: 720px" src=<%=abc.toString().slice(6)%>>
+      <p hidden style="color: #484848;font-size: 10px">ID: <%=data[i]._ID%></p>
+      <p style="color: #7d7d7d;font-size: 10px">Id : <%=data[i].id%></p>
+      <p style="color: tomato;font-size: 15px">Title : <%=data[i].title%></p>
+      <p style="color: #f29f90;font-size: 12px">Messeger : <%=data[i].messeger%></p>
+      <p style="color: #f29f90;font-size: 12px">Ngay dang : <%=data[i].day%></p>
+
+        <form action="/delete" method="post" enctype="application/x-www-form-urlencoded">
+          <input hidden name="index" value=<%=data[i]._ID%>>
+          <button >delete</button>
+        </form>
+
+        <form action="/viewImage/viewImage" method="post" enctype="application/x-www-form-urlencoded">
+          <input hidden name="_id" value=<%=data[i]._ID%>>
+          <input hidden name="id" value=<%=data[i].id %>>
+          <input hidden name="title" value=<%= data[i].title %>>
+          <input hidden name="messeger" value=<%= data[i].messeger %>>
+          <input hidden name="day" value=<%= data[i].day %>>
+          <input hidden name="_link" value=<%=abc.toString().slice(6)%>>
+          <button type="submit">edit</button>
+        </form>
+
+    </div>
+    <%
+
+  }
+ %>
+
+  </body>
+</html>

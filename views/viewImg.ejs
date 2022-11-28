@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>View Image</h1>
+
+    <%
+    for (var i = 0; i < arr.length; i++) {
+      %><form action="/edit" method="post" enctype="multipart/form-data">
+      <img style="width: 1024px;height: 720px" src=<%=arr[i].link%>>
+      <input type="file" name="imgEdit">
+      <input hidden name="ID" value="<%=arr[i]._Id%>">
+      <input name="id" placeholder=<%=arr[i].id%>>
+      <input name="title" placeholder=<%=arr[i].title%>>
+      <input name="messeger" placeholder=<%=arr[i].messeger%>>
+      <input name="day" placeholder=<%=arr[i].day%>>
+
+      <button type="submit" >edit</button>
+    </form><%
+    }
+    %>
+
+
+
+
+
+
+  </body>
+</html>
